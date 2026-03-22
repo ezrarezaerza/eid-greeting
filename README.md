@@ -1,20 +1,44 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🌙 Ucapan Idul Fitri Digital
 
-# Run and deploy your AI Studio app
+Aplikasi web interaktif untuk mengirimkan ucapan selamat Hari Raya Idul Fitri. Dibangun dengan antarmuka yang elegan, animasi yang halus, dan fitur kustomisasi nama serta nomor WhatsApp tujuan langsung melalui URL.
 
-This contains everything you need to run your app locally.
+## ✨ Fitur Utama
 
-View your app in AI Studio: https://ai.studio/apps/dff41b73-c30a-47cb-8c3c-f59ff81d3546
+- **Kustomisasi via URL**: Ubah nama keluarga/pengirim dan nomor WhatsApp tujuan hanya dengan mengubah parameter URL.
+- **Animasi Interaktif**: Menggunakan GSAP untuk efek transisi halaman, *scroll*, dan kemunculan teks yang mulus.
+- **Efek Visual Menarik**: Dilengkapi dengan animasi salju turun (*snowfall*) dan awan bergerak yang realistis.
+- **Musik Latar**: Musik otomatis diputar saat tombol "Buka Ucapan" diklik, lengkap dengan tombol kontrol (Play/Mute) yang melayang.
+- **Desain Responsif**: Tampilan *split-screen* asimetris yang elegan untuk Desktop dan layar penuh (*full-screen*) yang rapi untuk Mobile.
 
-## Run Locally
+## 🚀 Cara Penggunaan (URL Parameter)
 
-**Prerequisites:**  Node.js
+Anda dapat membagikan ucapan ini kepada orang lain dengan menyesuaikan parameter pada link URL:
 
+```text
+https://domain-anda.com/?surname=Keluarga%20Besar&WA_number=6281234567890
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- `surname`: Nama yang akan tampil di layar utama (Gunakan `%20` untuk menggantikan spasi).
+- `WA_number`: Nomor WhatsApp tujuan untuk tombol balasan (Gunakan format kode negara tanpa tanda plus, misal: `628...`).
+
+## 💻 Cara Menjalankan di Komputer Lokal
+
+Pastikan Anda sudah menginstal [Node.js](https://nodejs.org/).
+
+1. **Buka terminal** dan arahkan ke folder proyek ini.
+2. **Instal dependensi**:
+   ```bash
+   npm install
+   ```
+3. **Jalankan server pengembangan**:
+   ```bash
+   npm run dev
+   ```
+4. Buka `http://localhost:3000` (atau port yang tertera di terminal) pada browser Anda.
+
+## 🛠️ Teknologi yang Digunakan
+
+- **React** (via Vite)
+- **Tailwind CSS** (Styling & Layout)
+- **GSAP & ScrollTrigger** (Animasi kompleks)
+- **Lucide React** (Ikon)
