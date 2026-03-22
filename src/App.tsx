@@ -3,9 +3,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Moon, Star, Mail, MessageCircle, Music, Heart, VolumeX } from 'lucide-react';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { Moon, Star, Mail, MessageCircle, Music, Heart, VolumeX, ChevronLeft, ChevronRight } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const Snowfall = () => {
   const [snowflakes, setSnowflakes] = useState<{ id: number; left: string; animationDuration: string; animationDelay: string; size: string; opacity: number }[]>([]);
@@ -74,11 +75,41 @@ export default function App() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  
   const splashRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Function to handle manual navigation
+  const scrollToMessage = (index: number) => {
+    if (!scrollContainerRef.current || !horizontalRef.current) return;
+    
+    const panels = gsap.utils.toArray(horizontalRef.current.children);
+    if (index < 0 || index >= panels.length) return;
+
+    // Calculate the exact scroll position needed
+    // The total scroll distance is horizontalRef.current.offsetWidth * 1.5
+    // We need to map the index to a progress value (0 to 1)
+    const progress = index / (panels.length - 1);
+    
+    // Get the ScrollTrigger instance for the horizontal scroll
+    const st = ScrollTrigger.getById("horizontalScroll");
+    
+    if (st) {
+      // Calculate the pixel position to scroll to
+      const scrollPos = st.start + (st.end - st.start) * progress;
+      
+      // Animate the window scroll position
+      gsap.to(window, {
+        scrollTo: scrollPos,
+        duration: 1,
+        ease: "power2.inOut"
+      });
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -174,7 +205,15 @@ export default function App() {
             scrub: 1,
             snap: 1 / (panels.length - 1),
             end: () => "+=" + horizontalRef.current!.offsetWidth * 1.5, // Extended scroll distance for smoother feel
-            id: "horizontalScroll"
+            id: "horizontalScroll",
+            onUpdate: (self) => {
+              // Update the current index based on scroll progress
+              const progress = self.progress;
+              const newIndex = Math.round(progress * (panels.length - 1));
+              if (newIndex !== currentMessageIndex) {
+                setCurrentMessageIndex(newIndex);
+              }
+            }
           }
         });
 
@@ -305,7 +344,7 @@ export default function App() {
       <div ref={contentRef} className="w-full lg:w-[40vw] lg:ml-[60vw] min-h-screen overflow-y-auto bg-slate-50 relative">
         
         {/* Right Panel Fixed Background */}
-        <div className="fixed inset-0 lg:left-[60vw] lg:w-[40vw] pointer-events-none z-0 flex flex-col justify-between overflow-hidden">
+        <div className="fixed top-0 left-0 w-full h-[100dvh] lg:left-[60vw] lg:w-[40vw] pointer-events-none z-0 flex flex-col justify-between overflow-hidden">
           <img src="/img/Top.png" alt="Top Illustration" className="w-full h-auto max-h-[35vh] object-cover object-bottom opacity-20 mix-blend-multiply" style={{ maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)' }} />
           
           <img src="/img/Bottom.png" alt="Bottom Illustration" className="w-full h-auto max-h-[35vh] object-cover object-top opacity-20 mix-blend-multiply" style={{ maskImage: 'linear-gradient(to top, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to top, black 60%, transparent 100%)' }} />
@@ -357,10 +396,10 @@ export default function App() {
         </section>
 
         {/* Section 2: The Message & Apology */}
-        <section id="message" ref={scrollContainerRef} className="relative z-10 w-full lg:w-[40vw] h-screen overflow-hidden">
-          <div ref={horizontalRef} className="flex h-full w-[600vw] lg:w-[240vw]">
+        <section id="message" ref={scrollContainerRef} className="relative z-10 w-full lg:w-[40vw] h-[100dvh] overflow-hidden">
+          <div ref={horizontalRef} className="flex h-full w-[700vw] lg:w-[280vw]">
             {MESSAGES.map((msg, i) => (
-              <div key={i} className="w-screen lg:w-[40vw] h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+              <div key={i} className="w-screen lg:w-[40vw] h-full flex-shrink-0 flex flex-col items-center justify-center p-6 md:p-12 relative">
                 
                 {/* 1x1 Letter / Book Shape Container */}
                 <div className="bg-[#fdfcf8] w-full max-w-[400px] aspect-square rounded-xl shadow-[0_20px_60px_rgba(30,58,138,0.15)] border-[8px] md:border-[12px] border-white flex flex-col items-center justify-center p-8 md:p-10 text-center relative overflow-hidden mx-auto">
@@ -391,6 +430,34 @@ export default function App() {
                       </div>
                     ))}
                   </div>
+                </div>
+
+                {/* Navigation Controls */}
+                <div className="absolute bottom-24 left-0 right-0 flex justify-center items-center gap-4 z-30">
+                  <button 
+                    onClick={() => scrollToMessage(i - 1)}
+                    disabled={i === 0}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-white/30 backdrop-blur-sm transition-all duration-300 ${i === 0 ? 'opacity-0 cursor-not-allowed' : 'hover:bg-white/50 text-blue-900/60 hover:text-blue-900'}`}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  
+                  <div className="flex gap-1.5 items-center">
+                    {MESSAGES.map((_, dotIdx) => (
+                      <div 
+                        key={dotIdx} 
+                        className={`rounded-full transition-all duration-300 ${dotIdx === i ? 'bg-blue-900/40 w-2 h-2' : 'bg-blue-900/20 w-1.5 h-1.5'}`}
+                      />
+                    ))}
+                  </div>
+
+                  <button 
+                    onClick={() => scrollToMessage(i + 1)}
+                    disabled={i === MESSAGES.length - 1}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-white/30 backdrop-blur-sm transition-all duration-300 ${i === MESSAGES.length - 1 ? 'opacity-0 cursor-not-allowed' : 'hover:bg-white/50 text-blue-900/60 hover:text-blue-900'}`}
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             ))}
