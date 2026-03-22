@@ -1,24 +1,23 @@
 # 🌙 Ucapan Idul Fitri Digital
 
-Aplikasi web interaktif untuk mengirimkan ucapan selamat Hari Raya Idul Fitri. Dibangun dengan antarmuka yang elegan, animasi yang halus, dan fitur kustomisasi nama serta nomor WhatsApp tujuan langsung melalui URL.
+Aplikasi web interaktif untuk mengirimkan ucapan selamat Hari Raya Idul Fitri dengan fitur kustomisasi nama serta nomor WhatsApp tujuan langsung melalui URL.
 
 ## ✨ Fitur Utama
 
 - **Kustomisasi via URL**: Ubah nama keluarga/pengirim dan nomor WhatsApp tujuan hanya dengan mengubah parameter URL.
-- **Animasi Interaktif**: Menggunakan GSAP untuk efek transisi halaman, *scroll*, dan kemunculan teks yang mulus.
-- **Efek Visual Menarik**: Dilengkapi dengan animasi salju turun (*snowfall*) dan awan bergerak yang realistis.
-- **Musik Latar**: Musik otomatis diputar saat tombol "Buka Ucapan" diklik, lengkap dengan tombol kontrol (Play/Mute) yang melayang.
-- **Desain Responsif**: Tampilan *split-screen* asimetris yang elegan untuk Desktop dan layar penuh (*full-screen*) yang rapi untuk Mobile.
+- **Animasi Interaktif**: Menggunakan GSAP untuk efek transisi halaman, *scroll*.
+- **Musik Latar**: Musik otomatis diputar saat tombol "Buka Ucapan" diklik, lengkap dengan tombol kontrol (Play/Mute).
+- **Desain Responsif**: Tampilan *split-screen* asimetris yang elegan untuk Desktop dan layar penuh (*full-screen*).
 
 ## 🚀 Cara Penggunaan (URL Parameter)
 
 Anda dapat membagikan ucapan ini kepada orang lain dengan menyesuaikan parameter pada link URL:
 
 ```text
-https://eid-greeting-nine.vercel.app/?surname=Keluarga%20Besar&WA_number=6281234567890
+https://eid-greeting-nine.vercel.app/?surname=Keluarga%20Kamu&WA_number=62812xxx
 ```
 
-- `surname`: Nama yang akan tampil di layar utama (Gunakan `%20` untuk menggantikan spasi).
+- `surname`: Nama yang akan tampil di layar utama
 - `WA_number`: Nomor WhatsApp tujuan untuk tombol balasan (Gunakan format kode negara tanpa tanda plus, misal: `628...`).
 
 ## 💻 Cara Menjalankan di Komputer Lokal
