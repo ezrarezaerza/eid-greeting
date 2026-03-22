@@ -15,7 +15,7 @@ Aplikasi web interaktif untuk mengirimkan ucapan selamat Hari Raya Idul Fitri. D
 Anda dapat membagikan ucapan ini kepada orang lain dengan menyesuaikan parameter pada link URL:
 
 ```text
-https://domain-anda.com/?surname=Keluarga%20Besar&WA_number=6281234567890
+https://eid-greeting-nine.vercel.app/?surname=Keluarga%20Besar&WA_number=6281234567890
 ```
 
 - `surname`: Nama yang akan tampil di layar utama (Gunakan `%20` untuk menggantikan spasi).

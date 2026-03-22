@@ -306,9 +306,9 @@ export default function App() {
         
         {/* Right Panel Fixed Background */}
         <div className="fixed inset-0 lg:left-[60vw] lg:w-[40vw] pointer-events-none z-0 flex flex-col justify-between overflow-hidden">
-          <img src="/src/img/Top.png" alt="Top Illustration" className="w-full h-auto max-h-[35vh] object-cover object-bottom opacity-20 mix-blend-multiply" style={{ maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)' }} />
+          <img src="/img/Top.png" alt="Top Illustration" className="w-full h-auto max-h-[35vh] object-cover object-bottom opacity-20 mix-blend-multiply" style={{ maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)' }} />
           
-          <img src="/src/img/Bottom.png" alt="Bottom Illustration" className="w-full h-auto max-h-[35vh] object-cover object-top opacity-20 mix-blend-multiply" style={{ maskImage: 'linear-gradient(to top, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to top, black 60%, transparent 100%)' }} />
+          <img src="/img/Bottom.png" alt="Bottom Illustration" className="w-full h-auto max-h-[35vh] object-cover object-top opacity-20 mix-blend-multiply" style={{ maskImage: 'linear-gradient(to top, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to top, black 60%, transparent 100%)' }} />
         </div>
 
         {/* Fixed Animated Clouds */}
@@ -325,8 +325,8 @@ export default function App() {
           }
         `}</style>
         <div className="fixed inset-0 lg:left-[60vw] lg:w-[40vw] pointer-events-none z-20 flex items-center justify-center overflow-hidden">
-           <img src="/src/img/Cloud.png" alt="Cloud" className="absolute top-[10%] -left-50 w-[24rem] md:w-[28rem] opacity-70 mix-blend-multiply animate-[cloud-drift-1_20s_ease-in-out_infinite] drop-shadow-xl object-contain" />
-           <img src="/src/img/Cloud.png" alt="Cloud" className="absolute bottom-[10%] -right-50 w-[24rem] md:w-[28rem] opacity-70 mix-blend-multiply animate-[cloud-drift-2_25s_ease-in-out_infinite] drop-shadow-xl object-contain" />
+           <img src="/img/Cloud.png" alt="Cloud" className="absolute top-[10%] -left-50 w-[24rem] md:w-[28rem] opacity-70 mix-blend-multiply animate-[cloud-drift-1_20s_ease-in-out_infinite] drop-shadow-xl object-contain" />
+           <img src="/img/Cloud.png" alt="Cloud" className="absolute bottom-[10%] -right-50 w-[24rem] md:w-[28rem] opacity-70 mix-blend-multiply animate-[cloud-drift-2_25s_ease-in-out_infinite] drop-shadow-xl object-contain" />
         </div>
 
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%231e3a8a\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
@@ -337,7 +337,7 @@ export default function App() {
             <div className="absolute inset-[-16px] rounded-full border-4 border-blue-200/60 animate-[spin_12s_linear_infinite]"></div>
             <div className="absolute inset-[-28px] rounded-full border-2 border-blue-100 animate-[spin_20s_linear_infinite_reverse]"></div>
             <img
-              src="/src/img/Profile.png"
+              src="/img/Profile.png"
               alt="Profile"
               referrerPolicy="no-referrer"
               className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-8 border-white shadow-2xl relative z-10"
